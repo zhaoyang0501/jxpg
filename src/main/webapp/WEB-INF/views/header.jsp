@@ -4,7 +4,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/weather">首页</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/weather">HOME邯郸学院教学评估</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -14,13 +14,12 @@
       <!-- 
                 <li ><a href="${pageContext.request.contextPath}/friend">我的好友</a></li>
                  -->
-                <li><a href="${pageContext.request.contextPath}/score">成绩查询</a></li>
-                 <li><a href="${pageContext.request.contextPath}/fee">缴费查询</a></li>
-                 <li><a href="${pageContext.request.contextPath}/notice">公告</a></li>
+                <li><a href="${pageContext.request.contextPath}/score">在线评估</a></li>
+                 <li><a href="${pageContext.request.contextPath}/fee">公告查询</a></li>
+                 <li><a href="${pageContext.request.contextPath}/notice">留言</a></li>
                  <li><a href="${pageContext.request.contextPath}/plan">课程安排</a></li>
                  <li><a href="${pageContext.request.contextPath}/msgbox">留言讨论</a></li>
                 <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
-             
                <li><a href= "${pageContext.request.contextPath}/about">关于</a></li>
       </ul>
       

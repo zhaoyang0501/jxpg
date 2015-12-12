@@ -31,10 +31,12 @@
 					<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/msgboard/index"><i class="icon-pencil"></i>留言管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/notice/index"><i class="icon-pencil"></i>公告管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>学院管理</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/school/index"><i class="icon-pencil"></i>学院管理</a></li>	
 								<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>班级管理</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
-									<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>授课管理</a></li>	
+									<li><a href="${pageContext.request.contextPath}/admin/major/index"><i class="icon-pencil"></i>专业管理</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/testitem/index"><i class="icon-pencil"></i>评估管理</a></li>	
+	
 				</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
 						<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>课程安排</a></li>	
