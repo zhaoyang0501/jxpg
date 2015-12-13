@@ -50,6 +50,8 @@ jQuery.adminMajor = {
 					},
 					"aoColumns" : [ {
 						"mDataProp" : "id"
+					},{
+						"mDataProp" : "school.name"
 					}, {
 						"mDataProp" : "name"
 					}, {
@@ -61,7 +63,7 @@ jQuery.adminMajor = {
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [4],
+							'aTargets' : [5],
 							'fnRender' : function(oObj, sVal) {
 								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminMajor.deleteMajor("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
 								" <button class=\"btn2 btn-info\" onclick=\"$.adminMajor.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>";

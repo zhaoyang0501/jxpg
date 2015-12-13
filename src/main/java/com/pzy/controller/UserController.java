@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.User;
+import com.pzy.service.MajorService;
 import com.pzy.service.UserService;
 /***
  * @author panchaoyang
@@ -24,9 +26,11 @@ import com.pzy.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private MajorService majorService;
 	@RequestMapping("index")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("majors", majorService.findAll());
 		return "admin/user/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)

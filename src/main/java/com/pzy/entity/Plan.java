@@ -1,6 +1,4 @@
 package com.pzy.entity;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,45 +7,52 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.Persistent;
 @Entity
 @Table(name = "t_plan")
 public class Plan {
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
-	private Date date;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone="GMT+8")
-	private Date  start;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm" ,timezone="GMT+8")
-	private Date end;
+	private String year;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Major major;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Teacher teacher;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Lesson lesson;
-	private Double hours;
-	public Double getHours() {
-		return hours;
-	}
-	public void setHours(Double hours) {
-		this.hours = hours;
-	}
+	
+	@Persistent
+	private String state;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getStart() {
-		return start;
+	public String getYear() {
+		return year;
 	}
-	public void setStart(Date start) {
-		this.start = start;
+	public void setYear(String year) {
+		this.year = year;
 	}
-	public Date getEnd() {
-		return end;
+	public Major getMajor() {
+		return major;
 	}
-	public void setEnd(Date end) {
-		this.end = end;
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 	public Lesson getLesson() {
 		return lesson;
@@ -55,18 +60,6 @@ public class Plan {
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
 	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	private Date createDate;
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	
 }

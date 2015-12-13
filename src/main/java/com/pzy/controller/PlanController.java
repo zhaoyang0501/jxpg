@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.Plan;
 import com.pzy.service.LessonService;
+import com.pzy.service.MajorService;
 import com.pzy.service.PlanService;
+import com.pzy.service.TeacherService;
 
 
 /***
@@ -36,6 +38,10 @@ public class PlanController {
 	private PlanService planService;
 	@Autowired
 	private LessonService lessonService;
+	@Autowired
+	private TeacherService teacherService;
+	@Autowired
+	private MajorService majorService;
 	@InitBinder  
 	protected void initBinder(HttpServletRequest request,  
 	            ServletRequestDataBinder binder) throws Exception {   
@@ -44,6 +50,8 @@ public class PlanController {
 	@RequestMapping("index")
 	public String index(Model model) {
 		model.addAttribute("lessons", lessonService.findAll());
+		model.addAttribute("majors", majorService.findAll());
+		model.addAttribute("teachers", teacherService.findAll());
 		return "admin/plan/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -66,8 +74,6 @@ public class PlanController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> save(Plan plan) {
-		plan.setCreateDate(new Date());
-		plan.setDate(plan.getStart());
 		planService.save(plan);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("state", "success");

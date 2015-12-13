@@ -52,6 +52,15 @@
                      <label for="name">真实姓名</label>
                     <input type="text" class="form-control input-lg" id="name" name="name" placeholder="真实姓名" >
                 </div>
+                 <div class="form-group">
+                     <label for="name">专业</label>
+                  	 <select name='major.id' class="form-control">
+									<c:forEach items="${majors }" var="bean">
+										<option value="${bean.id }">(${bean.school.name }) ${bean.name }</option>
+									</c:forEach>
+					</select>
+                </div>
+                
                 <div class="form-group">
                        <label for="address">地址</label>
                     <input type="text" class="form-control input-lg" id="address" name="address" placeholder="地址" >

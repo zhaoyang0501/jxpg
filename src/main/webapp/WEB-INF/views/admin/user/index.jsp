@@ -136,11 +136,14 @@
 									<input type="text" name='school' id=school placeholder="">
 								</div>
 							</div>
-							
 							<div class="control-group">
 								<label for="title" class="control-label">班级：</label>
 								<div class="controls">
-									<input type="text" name='grade' id=grade placeholder="">
+									<select name='major.id'>
+									<c:forEach items="${majors }" var="bean">
+										<option value="${bean.id }">${bean.name }</option>
+									</c:forEach>
+								</select>
 								</div>
 							</div>
 						</form>

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.Major;
 import com.pzy.service.MajorService;
+import com.pzy.service.SchoolService;
 
 
 /***
@@ -26,9 +28,12 @@ import com.pzy.service.MajorService;
 public class MajorController {
 	@Autowired
 	private MajorService majorService;
+	@Autowired
+	private SchoolService schoolService;
 	
 	@RequestMapping("index")
-	public String index() {
+	public String index( Model model ) {
+		model.addAttribute("schools",schoolService.findAll());
 		return "admin/major/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)

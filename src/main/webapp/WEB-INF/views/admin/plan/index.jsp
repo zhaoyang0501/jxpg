@@ -5,7 +5,7 @@
 <%@ include file="../common/meta.jsp"%>
 <link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet">
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.plan.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.plan.js?1=2"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -70,11 +70,11 @@
 									<thead>
 										<tr>
 											<th >ID</th>
-											<th >日期</th>
-											<th >上课时间</th>
-											<th >下课时间</th>
+											<th >学期</th>
+											<th >学院</th>
+											<th >专业</th>
 											<th >课程</th>
-											<th >课时</th>
+											<th >老师</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -102,6 +102,29 @@
 					<div class="form-container grid-form form-background left-align form-horizontal">
 						<form action="" method="get" id=''>
 							<input type="hidden"  name='id' id="id" value="">
+							<div class="control-group">
+								<label for="title" class="control-label">学期：</label>
+								<div class="controls">
+									<select name="year">
+										<option value="2015-上学期">2015-上学期</option>
+										<option value="2015-下学期">2015-下学期</option>
+										<option value="2016-上学期">2016-上学期</option>
+										<option value="2016-下学期">2016-下学期</option>
+										<option value="2017-上学期">2017-上学期</option>
+										<option value="2017-下学期">2017-下学期</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label for="title" class="control-label">专业：</label>
+								<div class="controls">
+									<select name="major.id">
+										<c:forEach items="${majors }" var="bean">
+										<option value="${bean.id }">（${bean.school.name}）${bean.name }</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
 							
 							<div class="control-group">
 								<label for="title" class="control-label">课程：</label>
@@ -114,21 +137,13 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label for="title" class="control-label">上课时间：</label>
+								<label for="title" class="control-label">教师：</label>
 								<div class="controls">
-								<input size="16" name='start' type="text" value="" readonly class="datetime">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">下课时间：</label>
-								<div class="controls">
-								<input size="16" name='end' type="text" value="" readonly class="datetime">
-								</div>
-							</div>
-						<div class="control-group">
-								<label for="title" class="control-label">课时：</label>
-								<div class="controls">
-								<input size="16" name='hours' type="text" value="" >
+									<select name="teacher.id">
+										<c:forEach items="${teachers }" var="bean">
+										<option value="${bean.id }">${bean.name }</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 						</form>

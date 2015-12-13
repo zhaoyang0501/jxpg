@@ -65,7 +65,7 @@ jQuery.adminUser = {
 					},{
 						"mDataProp" : "school"
 					},{
-						"mDataProp" : "grade"
+						"mDataProp" : "major.name"
 					}, {
 						"mDataProp" : "createDate"
 					},{

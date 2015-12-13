@@ -55,6 +55,7 @@
 									<thead>
 										<tr>
 											<th >ID</th>
+											<th >所属学院</th>
 											<th >专业名称</th>
 											<th >课程描述</th>
 											<th >创建日期</th>
@@ -92,6 +93,17 @@
 									<input type="text" name='name' id="name" placeholder="">
 								</div>
 							</div>
+							<div class="control-group">
+								<label for="title" class="control-label">学院：</label>
+								<div class="controls">
+								<select name='school.id'>
+									<c:forEach items="${schools }" var="bean">
+										<option value="${bean.id }">${bean.name }</option>
+									</c:forEach>
+								</select>
+								</div>
+							</div>
+							
 							<div class="control-group">
 								<label for="title" class="control-label">专业描述：</label>
 								<div class="controls">

@@ -14,11 +14,10 @@
       <!-- 
                 <li ><a href="${pageContext.request.contextPath}/friend">我的好友</a></li>
                  -->
-                <li><a href="${pageContext.request.contextPath}/score">在线评估</a></li>
-                 <li><a href="${pageContext.request.contextPath}/fee">公告查询</a></li>
-                 <li><a href="${pageContext.request.contextPath}/notice">留言</a></li>
+                <li><a href="${pageContext.request.contextPath}/test">在线评估</a></li>
+                 <li><a href="${pageContext.request.contextPath}/notice">公告查询</a></li>
+                 <li><a href="${pageContext.request.contextPath}/msgbox">留言</a></li>
                  <li><a href="${pageContext.request.contextPath}/plan">课程安排</a></li>
-                 <li><a href="${pageContext.request.contextPath}/msgbox">留言讨论</a></li>
                 <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
                <li><a href= "${pageContext.request.contextPath}/about">关于</a></li>
       </ul>

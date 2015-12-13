@@ -29,16 +29,20 @@ import com.pzy.entity.Lesson;
 import com.pzy.entity.MsgBoard;
 import com.pzy.entity.Notice;
 import com.pzy.entity.Plan;
+import com.pzy.entity.Result;
 import com.pzy.entity.Score;
 import com.pzy.entity.User;
 import com.pzy.entity.Weather;
 import com.pzy.service.CityService;
 import com.pzy.service.FeeService;
 import com.pzy.service.LessonService;
+import com.pzy.service.MajorService;
 import com.pzy.service.MsgBoardService;
 import com.pzy.service.NoticeService;
 import com.pzy.service.PlanService;
+import com.pzy.service.ResultService;
 import com.pzy.service.ScoreService;
+import com.pzy.service.TestitemService;
 import com.pzy.service.UserService;
 import com.pzy.service.WeatherService;
 /***
@@ -62,11 +66,17 @@ public class HomeController {
 	@Autowired
 	private PlanService planService;
 	@Autowired
+	private ResultService resultService;
+	@Autowired
 	private MsgBoardService msgBoardService;
+	@Autowired
+	private TestitemService testitemService;
 	@Autowired
 	private CityService cityService;
 	@Autowired
 	private WeatherService weatherService;
+	@Autowired
+	private MajorService majorService;
 	@InitBinder  
 	protected void initBinder(HttpServletRequest request,  
 	            ServletRequestDataBinder binder) throws Exception {   
@@ -91,6 +101,30 @@ public class HomeController {
 	public String score(Model model) {
 		model.addAttribute("lessons", lessonService.findAll());
 		return "score";
+	}
+	@RequestMapping("test")
+	public String test(Model model,HttpSession httpSession) {
+		User user=(User)httpSession.getAttribute("user");
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期",user));
+		return "test";
+	}
+	@RequestMapping("testdetail")
+	public String testdetail(Model model,HttpSession httpSession,Plan plan) {
+		User user=(User)httpSession.getAttribute("user");
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期"));
+		model.addAttribute("plan", planService.find(plan.getId()));
+		model.addAttribute("testitems", testitemService.findAll());
+		return "testdetail";
+	}
+	@RequestMapping("dotestdetail")
+	public String dotestdetail(Model model,HttpSession httpSession,Result result) {
+		User user=(User)httpSession.getAttribute("user");
+		result.setUser(user);
+		result.setCreateDate(new Date());
+		resultService.save(result);
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期",user));
+		model.addAttribute("tip", "评估成功");
+		return "test";
 	}
 	
 	@RequestMapping(value = "score" ,method = RequestMethod.POST)
@@ -164,7 +198,8 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "register",method = RequestMethod.GET)
-	public String register() {
+	public String register(Model model) {
+		model.addAttribute("majors",majorService.findAll());
 		return "register";
 	}
 	/***

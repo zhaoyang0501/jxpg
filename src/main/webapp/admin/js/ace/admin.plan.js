@@ -51,15 +51,15 @@ jQuery.adminPlan = {
 					"aoColumns" : [ {
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "date"
+						"mDataProp" : "year"
 					}, {
-						"mDataProp" : "start"
+						"mDataProp" : "major.school.name"
 					}, {
-						"mDataProp" : "end"
-					},{
+						"mDataProp" : "major.name"
+					}, {
 						"mDataProp" : "lesson.name"
 					},{
-						"mDataProp" : "hours"
+						"mDataProp" : "teacher.name"
 					},{
 						"mDataProp" : ""
 					}],
