@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pzy.entity.Fee;
 import com.pzy.entity.Lesson;
+import com.pzy.entity.Major;
 import com.pzy.entity.MsgBoard;
 import com.pzy.entity.Notice;
 import com.pzy.entity.Plan;
@@ -105,13 +106,13 @@ public class HomeController {
 	@RequestMapping("test")
 	public String test(Model model,HttpSession httpSession) {
 		User user=(User)httpSession.getAttribute("user");
-		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期",user));
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2015-下学期",user));
 		return "test";
 	}
 	@RequestMapping("testdetail")
 	public String testdetail(Model model,HttpSession httpSession,Plan plan) {
 		User user=(User)httpSession.getAttribute("user");
-		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期"));
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2015-下学期"));
 		model.addAttribute("plan", planService.find(plan.getId()));
 		model.addAttribute("testitems", testitemService.findAll());
 		return "testdetail";
@@ -122,7 +123,7 @@ public class HomeController {
 		result.setUser(user);
 		result.setCreateDate(new Date());
 		resultService.save(result);
-		model.addAttribute("plans", planService.findAll(user.getMajor(),"2016-下学期",user));
+		model.addAttribute("plans", planService.findAll(user.getMajor(),"2015-下学期",user));
 		model.addAttribute("tip", "评估成功");
 		return "test";
 	}
@@ -157,14 +158,14 @@ public class HomeController {
 	}
 	@RequestMapping("plan")
 	public String plan(Model model) {
+		model.addAttribute("majors",majorService.findAll());
 		return "plan";
 	}
 	@RequestMapping(value = "plan" ,method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> plan(Date start,Date end, Model model,HttpSession httpSession) throws ParseException {
-		List<Plan> plans=planService.findAll(start,end);
+	public Map<String,Object> plan(Major major, Model model,HttpSession httpSession) throws ParseException {
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("plans", plans);
+		map.put("plans", planService.findAll(major, "2015-下学期"));
 		return map;
 	}
 	

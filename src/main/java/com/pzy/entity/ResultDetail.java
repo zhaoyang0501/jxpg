@@ -9,12 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "t_resultdetail")
 public class ResultDetail {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, optional = true) @JoinColumn(name = "result_id")
 	private Result result;
 	@ManyToOne(fetch = FetchType.EAGER)

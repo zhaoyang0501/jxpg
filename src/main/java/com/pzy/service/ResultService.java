@@ -39,7 +39,7 @@ public class ResultService {
 				Predicate predicate = cb.conjunction();
 				if (name != null) {
 					predicate.getExpressions().add(
-							cb.like(root.get("name").as(String.class), "%"
+							cb.like(root.get("plan").get("lesson").get("name").as(String.class), "%"
 									+ name + "%"));
 				}
 				return predicate;

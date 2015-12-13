@@ -46,18 +46,17 @@ function fun_query(){
 		type : "POST",
 		url : $.ace.getContextPath() + "/plan",
 		data:{
-			"start":$("#start").val(),
-			"end":$("#end").val()
+			"id":$("#majorid").val()
 		},
 		success : function(json) {
 			$("#table").html("");
 			for(i=0;i<json.plans.length;i++){
 				$("#table").append("<tr>"+
-			 			"<td>"+json.plans[i].date+"</td>"+
+			 			"<td>"+json.plans[i].year+"</td>"+
+		 				"<td>"+json.plans[i].major.name+"</td>"+
 		 				"<td>"+json.plans[i].lesson.name+"</td>"+
-		 				"<td>"+json.plans[i].start+"</td>"+
-		 				"<td>"+json.plans[i].end+"</td>"+
-		 				"<td><span class='label label-success'>"+json.plans[i].hours+"</span></td>"+
+		 				"<td><span class='label label-success'>"+json.plans[i].teacher.name+"</span></td>"+
+		 				"</td>"+
 		 		"</tr>");
 			}
 		}
@@ -90,11 +89,11 @@ function fun_query(){
 							<div class="text-center center-block">
 						<form class="form-inline" role="form">
 						 <div class="form-group">
-							<div class="input-daterange input-group" id="datepicker">
-							    <input type="text" class=" form-control" id="start"  placeholder="起始日期"/>
-							    <span class="input-group-addon">to</span>
-							    <input type="text" class=" form-control" id="end"  placeholder="终止日期" />
-							</div>
+							 <select id='majorid' name='major.id' class="form-control">
+									<c:forEach items="${majors }" var="bean">
+										<option value="${bean.id }">(${bean.school.name }) ${bean.name }</option>
+									</c:forEach>
+							</select>
 						 </div>
 						 <a class="btn btn-primary" onclick="fun_query()">查询</a>
 					  </form>
@@ -112,14 +111,21 @@ function fun_query(){
    <table class="table">
    <thead>
 										<tr>
-											<th>日期</th>
+											<th>学期</th>
+											<th>专业</th>
 											<th>课程</th>
-											<th>上课时间</th>
-											<th>下课时间</th>
-												<th>课时</th>
+											<th>任课老师</th>
 										</tr>
 									</thead>
-   <tbody  id="table"></tbody>
+   <tbody  id="table">
+   
+   <tr>
+											<th>2014</th>
+											<th>计算机学院</th>
+											<th>大学英语</th>
+											<th>任课老师</th>
+										</tr>
+   </tbody>
    <tbody>
    
    </tbody>

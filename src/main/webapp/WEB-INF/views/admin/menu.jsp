@@ -36,15 +36,12 @@
 					<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
 									<li><a href="${pageContext.request.contextPath}/admin/major/index"><i class="icon-pencil"></i>专业管理</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/testitem/index"><i class="icon-pencil"></i>评估管理</a></li>	
+		<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>授课管理</a></li>	
 	
 				</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
-						<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>课程安排</a></li>	
-						<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>成绩管理</a></li>	
-						<li><a href="${pageContext.request.contextPath}/admin/msgboardview/index"><i class="icon-pencil"></i>留言查看</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/noticeview/index"><i class="icon-pencil"></i>公告查看</a></li>
-						<li><a href="${pageContext.request.contextPath}/admin/userview/index"><i class="icon-pencil"></i>学生查询</a></li>
-			
+						<li><a href="${pageContext.request.contextPath}/admin/mytest/index"><i class="icon-pencil"></i>我的评测</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>提交外审材料</a></li>	
 				</c:if>
 				<!--  
 				<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
