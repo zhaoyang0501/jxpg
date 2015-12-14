@@ -36,15 +36,20 @@
 					<li><a href="${pageContext.request.contextPath}/admin/lesson/index"><i class="icon-pencil"></i>课程管理</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/major/index"><i class="icon-pencil"></i>专业管理</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/testitem/index"><i class="icon-pencil"></i>评估管理</a></li>	
-			<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>授课管理</a></li>	
-			<li><a href="${pageContext.request.contextPath}/admin/userreport/index"><i class="icon-pencil"></i>学生评价成绩表</a></li>	
-			<li><a href="${pageContext.request.contextPath}/admin/usernotreport/index"><i class="icon-pencil"></i>学生评价初始表</a></li>	
-			<li><a href="${pageContext.request.contextPath}/admin/userreportcount/index"><i class="icon-pencil"></i>评价次数表</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/plan/index"><i class="icon-pencil"></i>授课管理</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/userreport/index"><i class="icon-pencil"></i>学生评价成绩表</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/usernotreport/index"><i class="icon-pencil"></i>学生评价初始表</a></li>	
+					<li><a href="${pageContext.request.contextPath}/admin/userreportcount/index"><i class="icon-pencil"></i>评价次数表</a></li>	
 				</c:if>
-				<c:if test="${sessionScope.adminuser.username!='admin'}">
-						<li><a href="${pageContext.request.contextPath}/admin/mytest/index"><i class="icon-pencil"></i>我的评测</a></li>	
-						<li><a href="${pageContext.request.contextPath}/admin/score/index"><i class="icon-pencil"></i>提交外审材料</a></li>	
+				<c:if test="${sessionScope.adminuser.username!='admin'&&sessionScope.adminuser.username!='check'}">
+											<li><a href="${pageContext.request.contextPath}/admin/center/index"><i class="icon-pencil"></i>个人中心</a></li>
+						<li><a href="${pageContext.request.contextPath}/admin/mytest/index"><i class="icon-pencil"></i>我的测评</a></li>	
+						<li><a href="${pageContext.request.contextPath}/admin/teacherupload/index"><i class="icon-pencil"></i>提交外审材料</a></li>	
 				</c:if>
+				<c:if test="${sessionScope.adminuser.username=='check'}">
+						<li><a href="${pageContext.request.contextPath}/admin/teacherfile/index"><i class="icon-pencil"></i>外审管理</a></li>	
+				
+					</c:if>
 				<!--  
 				<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>

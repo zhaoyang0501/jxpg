@@ -49,7 +49,14 @@ public class IndexController {
     		httpSession.setAttribute("adminuser", admin);
     		return "admin/index";
     	}
-		
+    	if("check".equals(userName)&&"123456".equals(password)){
+    		User admin=new User();  
+    		admin.setUsername("check");
+    		admin.setPassword("123456");
+    		admin.setName("外审员");
+    		httpSession.setAttribute("adminuser", admin);
+    		return "admin/index";
+    	}
     	else if(user!=null){
     		httpSession.setAttribute("adminuser", user);
     		return "admin/index";

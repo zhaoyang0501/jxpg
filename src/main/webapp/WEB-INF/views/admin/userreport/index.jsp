@@ -12,6 +12,9 @@
 
 
 <script type="text/javascript">
+function doPrint(){
+    window.print();
+ }
 	$(document).ready(function(){
 		$(".date").datetimepicker({
 			language:  'zh-CN',
@@ -64,8 +67,9 @@
 							</div>
 							<div class="widget-container">
 								
-									<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminPlan.showPlanAddModal()"><i class="icon-plus"></i>新增</a>
-								<table class="responsive table table-striped table-bordered"
+							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="doPrint()"><i class="icon-plus"></i>打印</a>
+						
+							<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>

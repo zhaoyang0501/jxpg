@@ -9,34 +9,9 @@
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
-function AngelMoney(s){
-	   if(/[^0-9\.]/.test(s)) return "不是数字！";
-	   s=s.replace(/^(\d*)$/,"$1.");
-	   s=(s+"00").replace(/(\d*\.\d\d)\d*/,"$1");
-	   s=s.replace(".",",");
-	   var re=/(\d)(\d{3},)/;
-	   while(re.test(s))
-	           s=s.replace(re,"$1,$2");
-	   s=s.replace(/,(\d\d)$/,".$1");
-	   return "￥" + s.replace(/^\./,"0.")
-	}
-	function fun_getitem(){
-		$.ajax({
-			type : "POST",
-			url : $.ace.getContextPath() + "/admin/item/get",
-			data:{
-				"id":$("#itemid").val()
-			},
-			success : function(json) {
-				$("#itemimg").attr("src","../upload/"+json.resultMap.object.imgPath);
-				$("#itemcount").html(json.resultMap.object.count+"件");
-				$("#itemdetail").show();
-			}
-		});
-	}
 	$(document).ready(function(){
-		if("${name}" != null && "${name}" != ""){
-			noty({"text":"${name}","layout":"top","type":"success","timeout":"2000"});
+		if("${tip}" != null && "${tip}" != ""){
+			noty({"text":"${tip}","layout":"top","type":"success","timeout":"2000"});
 		}
 		$(".date").datetimepicker({
 			language:  'zh-CN',
@@ -70,13 +45,13 @@ function AngelMoney(s){
 					<div class="span12">
 						<div class="content-widgets ">
 							<div class="widget-head  bondi-blue" >
-								<h3>个人中心</h3>
+								<h3>提交评审材料</h3>
 							</div>
 							
 							<div class="widget-container">
 							
 							<div class="row-fluid">
-								<form action="${pageContext.request.contextPath}/admin/adminuser/docenter" method="post">
+								<form action="${pageContext.request.contextPath}/admin/teacherupload/doupload" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="adminuser.id" value="${sessionScope.adminuser.id}">
 							<div class="control-group">
 								<label for="name" class="control-label">学期：</label>
@@ -96,7 +71,7 @@ function AngelMoney(s){
 							<div class="control-group" id='control_project'>
 								<label for="remark" class="control-label">上传教学资料（外审）：</label>
 								<div class="controls">
-									<input type="file" value="资料"/>
+									<input type="file" name='filename' value="资料"/>
 								</div>
 							</div>
 							<div class="modal-footer center" id="div_footer">
