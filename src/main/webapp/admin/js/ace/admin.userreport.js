@@ -1,8 +1,8 @@
-jQuery.adminMytest = {
-		mytestDataTable:null,
+jQuery.adminUserreport = {
+		userreportDataTable:null,
 		initSearchDataTable : function() {
-			if (this.mytestDataTable == null) {
-				this.mytestDataTable = $('#dt_table_view').dataTable({
+			if (this.userreportDataTable == null) {
+				this.userreportDataTable = $('#dt_table_view').dataTable({
 					"sDom" : "<'row-fluid'<'span6'l>r>t<'row-fluid'<'span6'i><'span6'p>>",
 					"sPaginationType" : "bootstrap",
 					"oLanguage" : {
@@ -26,7 +26,7 @@ jQuery.adminMytest = {
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
 					"bSort" : false,
-					"sAjaxSource" : $.ace.getContextPath() + "/admin/mytest/list",
+					"sAjaxSource" : $.ace.getContextPath() + "/admin/userreport/list",
 					"fnDrawCallback" : function(oSettings) {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
@@ -77,7 +77,7 @@ jQuery.adminMytest = {
 						{
 							'aTargets' : [8],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminMytest.showMytestAddModal("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 查看详细</button>";
+								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminUserreport.showUserreportAddModal("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 查看详细</button>";
 							}
 						},
 					 {
@@ -88,23 +88,23 @@ jQuery.adminMytest = {
 
 				});
 			} else {
-				var oSettings = this.mytestDataTable.fnSettings();
+				var oSettings = this.userreportDataTable.fnSettings();
 				oSettings._iDisplayStart = 0;
-				this.mytestDataTable.fnDraw(oSettings);
+				this.userreportDataTable.fnDraw(oSettings);
 			}
 
 		},
-		deleteMytest :function(id){
+		deleteUserreport :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({
 	        			type : "get",
-	        			url : $.ace.getContextPath() + "/admin/mytest/delete/"+id,
+	        			url : $.ace.getContextPath() + "/admin/userreport/delete/"+id,
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.state=='success'){
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-	        					$.adminMytest.initSearchDataTable();
+	        					$.adminUserreport.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
 	        				}
@@ -113,17 +113,17 @@ jQuery.adminMytest = {
 	            }
 	        });
 		},
-		showMytestAddModal: function(id){
+		showUserreportAddModal: function(id){
 			$("#id").val(id);
 			$('#_modal').modal({});
-			$.adminMytest.showEdit(id);
+			$.adminUserreport.showEdit(id);
 			$("#_modal").modal('show');
 		},
 		showEdit: function (id){
 			$("#id").val(id);
 			$.ajax({
     			type : "get",
-    			url : $.ace.getContextPath() + "/admin/mytest/get/"+id,
+    			url : $.ace.getContextPath() + "/admin/userreport/get/"+id,
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
@@ -144,17 +144,17 @@ jQuery.adminMytest = {
 			$("#_modal").modal('show');
 		},
 		
-		saveMytest: function(id){
+		saveUserreport: function(id){
 			$.ajax({
     			type : "post",
-    			url : $.ace.getContextPath() + "/admin/mytest/save",
+    			url : $.ace.getContextPath() + "/admin/userreport/save",
     			data:$("form").serialize(),
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
     					$("#_modal").modal('hide');
     					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.adminMytest.initSearchDataTable();
+    					$.adminUserreport.initSearchDataTable();
     				}else{
     					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
     				}

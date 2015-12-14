@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Result;
 import com.pzy.entity.ResultDetail;
+import com.pzy.entity.Teacher;
+import com.pzy.entity.User;
 import com.pzy.repository.ResultRepository;
 
 @Service
@@ -27,7 +29,9 @@ public class ResultService {
 	public List<Result> findAll() {
 		return (List<Result>) resultRepository.findAll(new Sort(Direction.DESC, "createDate"));
 	}
-
+	public List<Result> findAllByUser(User user) {
+		return (List<Result>) resultRepository.findByUser(user);
+	}
 	public Page<Result> findAll(final int pageNumber, final int pageSize,
 			final String name) {
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,
@@ -39,8 +43,33 @@ public class ResultService {
 				Predicate predicate = cb.conjunction();
 				if (name != null) {
 					predicate.getExpressions().add(
+							cb.like(root.get("user").get("name").as(String.class), "%"
+									+ name + "%"));
+				}
+				return predicate;
+			}
+		};
+		Page<Result> result = (Page<Result>) resultRepository.findAll(spec,
+				pageRequest);
+		return result;
+	}
+	
+	public Page<Result> findAll(final int pageNumber, final int pageSize,
+			final String name,final Teacher teacher) {
+		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,
+				new Sort(Direction.DESC, "id"));
+
+		Specification<Result> spec = new Specification<Result>() {
+			public Predicate toPredicate(Root<Result> root,
+					CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				if (name != null) {
+					predicate.getExpressions().add(
 							cb.like(root.get("plan").get("lesson").get("name").as(String.class), "%"
 									+ name + "%"));
+				}
+				if (teacher != null) {
+					predicate.getExpressions().add(cb.equal(root.get("plan").get("teacher").as(Teacher.class),teacher));
 				}
 				return predicate;
 			}

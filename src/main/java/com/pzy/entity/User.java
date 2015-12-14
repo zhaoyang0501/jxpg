@@ -126,4 +126,19 @@ public class User implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Major major;
 	
+	private Integer acout;
+	private Integer bcount;
+	public Integer getAcout() {
+		return acout;
+	}
+	public void setAcout(Integer acout) {
+		this.acout = acout;
+	}
+	public Integer getBcount() {
+		return bcount;
+	}
+	public void setBcount(Integer bcount) {
+		this.bcount = bcount;
+	}
+	
 }

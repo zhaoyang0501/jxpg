@@ -5,7 +5,7 @@
 <%@ include file="../common/meta.jsp"%>
 <link href="http://www.bootcss.com/p/bootstrap-datetimepicker/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet">
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.mytest.js?1=112"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.userreport.js?1=112"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -54,12 +54,12 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>我的评测</h3>
+								<h3>学生评价表</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>课程名称：</span>
+								<span>学生姓名：</span>
 								<input type="text" id="_name" >
-								<a onclick="$.adminMytest.initSearchDataTable()"
+								<a onclick="$.adminUserreport.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							<div class="widget-container">
@@ -77,7 +77,7 @@
 											<th >任课老师</th>
 											<th >评价学生</th>
 											<th >总分</th>
-											<th >操作</th>
+											<th >查看</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -35,8 +35,8 @@ import com.pzy.service.TeacherService;
  *
  */
 @Controller
-@RequestMapping("/admin/mytest")
-public class MytestController {
+@RequestMapping("/admin/userreport")
+public class UserReportController {
 	@Autowired
 	private ResultService mytestService;
 	@Autowired
@@ -55,7 +55,7 @@ public class MytestController {
 		model.addAttribute("lessons", lessonService.findAll());
 		model.addAttribute("majors", majorService.findAll());
 		model.addAttribute("teachers", teacherService.findAll());
-		return "admin/mytest/index";
+		return "admin/userreport/index";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
@@ -65,10 +65,9 @@ public class MytestController {
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
 			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String name
 			) throws ParseException {
-		Teacher teacher=(Teacher)httpSession.getAttribute("adminuser");
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Result> mytests = mytestService.findAll(pageNumber, pageSize, name,teacher);
+		Page<Result> mytests = mytestService.findAll(pageNumber, pageSize, name);
 		for(Result r:mytests.getContent()){
 			Integer score=0;
 			for(ResultDetail d:r.getDetails()){

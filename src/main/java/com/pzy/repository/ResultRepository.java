@@ -9,5 +9,6 @@ import com.pzy.entity.Result;
 import com.pzy.entity.User;
 public interface ResultRepository extends PagingAndSortingRepository<Result, Long>,JpaSpecificationExecutor<Result>{
 	public List<Result> findByPlanAndUser(Plan plan ,User user);
+	public List<Result> findByUser(User user);
 }
 

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Persistent;
 @Entity
 @Table(name = "t_result")
 public class Result {
@@ -25,6 +27,14 @@ public class Result {
 	private Date createDate;
 	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "result")
 	private List<ResultDetail> details;
+	@Persistent
+	private Integer totalScore; 
+	public Integer getTotalScore() {
+		return totalScore;
+	}
+	public void setTotalScore(Integer totalScore) {
+		this.totalScore = totalScore;
+	}
 	public Long getId() {
 		return id;
 	}
